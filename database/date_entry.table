@@ -1,6 +1,6 @@
 CREATE TABLE date_entry(
 user_id INT NOT NULL,
-alcohol_id NOT NULL,
+alcohol_id INT NOT NULL,
 alcohol_percentage NUMERIC (5, 2) NULL,
 units INT NULL,
 date DATE NOT NULL,
