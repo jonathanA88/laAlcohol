@@ -1,0 +1,4 @@
+CREATE TABLE type_of_alcohol (
+alcohol_id serial PRIMARY KEY,
+alcohol_name VARCHAR(150) NOT NULL
+);

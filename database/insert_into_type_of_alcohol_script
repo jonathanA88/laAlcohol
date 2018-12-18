@@ -1,0 +1,14 @@
+INSERT INTO type_of_alcohol (alcohol_name)
+VALUES
+ ('Beer - 50 cl'), 
+ ('Beer - 33 cl'),
+ ('Cider - 50 cl'),
+ ('Cider - 33 cl'),
+ ('Red Wine - one glass'),
+ ('White Wine - one glass'),
+ ('Cava - one glass'),
+ ('Champagne - one glass'),
+ ('Liquor - 4 cl'),
+ ('Liquor - 6 cl'),
+ ('Whiskey - 4 cl'),
+ ('Whiskey - 6 cl');
