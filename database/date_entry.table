@@ -2,6 +2,7 @@ CREATE TABLE date_entry(
 user_id INT NOT NULL,
 alcohol_id NOT NULL,
 alcohol_percentage NUMERIC (5, 2) NULL,
+units INT NULL,
 date DATE NOT NULL,
 CONSTRAINT account_user_id_fkey FOREIGN KEY (user_id)
       REFERENCES account (user_id) MATCH SIMPLE
