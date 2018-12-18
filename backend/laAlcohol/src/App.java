@@ -64,6 +64,13 @@ public class App {
 
         return id;
     }
+
+    public long updatePersonelInfo() {
+        long id = 0;
+        //Hur får jag user_id från account tabellen när jag ska uppdatera person_info tabellen och date_entry tabellen
+        return id;
+    }
+
 }
 
 
