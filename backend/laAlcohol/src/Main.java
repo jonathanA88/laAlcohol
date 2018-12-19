@@ -10,8 +10,17 @@
         account.setPassword("laalcohol");
         account.setLastlogin(getCurrentTimeStamp());
 
-        app.createAccount(account);
+        // what id is returned when a new user is created?
+        long id = app.createAccount(account);
+        System.out.println(id);
         //createAccount(new Account)
+
+        //test login
+        Login login = new Login();
+        login.setUsername("jonathan");
+        login.setPassword("laalcohol");
+        long user_id = app.login(login);
+        System.out.println(user_id);
     }
 
 

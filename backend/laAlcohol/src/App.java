@@ -27,7 +27,52 @@ public class App {
         return conn;
     }
 
+    public long login(Login login){
+        long user_id = 0;
 
+
+        // check if username/email and password exist in account table,
+        // 1.a if it does, get the user_id
+        // 2. set the lastlogin column in account table
+        // 3. return the user_id
+
+        // 1.b If it does not exist,  throw login failed
+
+        return user_id;
+    }
+
+    public Account getAccount(long user_id) {
+        String SQL = "SELECT user_id,username, password, email "
+                + "FROM account "
+                + "WHERE user_id = ?";
+
+        Account account = new Account();
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+
+            pstmt.setLong(1, user_id);
+            pstmt.executeQuery();
+
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                if (rs.next()) {
+
+                    account.setUser_id(rs.getLong(1));
+                    account.setUsername(rs.getString(2));
+                    account.setPassword(rs.getString(3));
+                    account.setEmail(rs.getString(4));
+                    account.setLastlogin(rs.getTimestamp(5));
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return account;
+    }
 
     /*
         create an account
@@ -65,11 +110,6 @@ public class App {
         return id;
     }
 
-    public long updatePersonelInfo() {
-        long id = 0;
-        //Hur får jag user_id från account tabellen när jag ska uppdatera person_info tabellen och date_entry tabellen
-        return id;
-    }
 
 }
 

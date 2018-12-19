@@ -2,18 +2,21 @@ import java.util.Date;
 
 public class Account {
 
+    private long user_id;
     private String username;
     private String password;
     private String email;
     private java.sql.Timestamp lastlogin;
 
+    public Long getUser_id() {return user_id;}
+
+    public void setUser_id(long user_id) { this.user_id = user_id;}
+
     public String getUsername() {
         return username;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() { return email;}
 
     public String getPassword() {
         return password;
