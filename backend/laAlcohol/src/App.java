@@ -30,7 +30,7 @@ public class App {
     public long login(Login login){
         long user_id = 0;
 
-
+        // ta bort lggin classen och återandvänd account tabellen
         // check if username/email and password exist in account table,
         // 1.a if it does, get the user_id
         // 2. set the lastlogin column in account table
