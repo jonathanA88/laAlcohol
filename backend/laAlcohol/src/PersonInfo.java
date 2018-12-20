@@ -1,14 +1,17 @@
 public class PersonInfo {
 
-    private String email;
+    private long user_id;
+    //private String email;
     private String name;
     private java.sql.Date birthday;
-    private Float weight;
-    private Float height;
+    private float weight;
+    private float height;
 
-    public String getEmail() {
-        return this.email;
-    }
+    public long getUser_id(){ return this.user_id;}
+
+    //public String getEmail() {
+    //    return this.email;
+    //}
 
     public String getName() {
         return this.name;
@@ -18,31 +21,33 @@ public class PersonInfo {
         return this.birthday;
     }
 
-    public Float getWeight() {
+    public float getWeight() {
         return this.weight;
     }
 
-    public Float getHeight() {
+    public float getHeight() {
         return this.height;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setUser_id(long user_id){this.user_id = user_id;}
+
+    //public void setEmail(String email) {
+    //    this.email = email;
+    //}
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setEmail(java.sql.Date birthday) {
+    public void setBirthday(java.sql.Date birthday) {
         this.birthday = birthday;
     }
 
-    public void setWeight(Float weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 
-    public void setHeight(Float height) {
+    public void setHeight(float height) {
         this.height = height;
     }
 }

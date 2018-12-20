@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class App {
     private final String url = "jdbc:postgresql://localhost/laalcohol";
     private final String user = "postgres";
-    private final String password = "Lingon20";
+    private final String password = "apollo18";
 
     /**
      * Connect to the PostgreSQL database
@@ -32,7 +32,7 @@ public class App {
         long user_id = 0;
         String SQL = "SELECT user_id "
                 + "FROM account "
-                + "WHERE username = ? AND"
+                + "WHERE username = ? AND "
                 + "password = ?";
 
         try (Connection conn = connect();
@@ -126,6 +126,36 @@ public class App {
         return id;
     }
 
+
+    public long updatePersonInfo(PersonInfo personinfo) {
+        String SQL = "WITH new_values (user_id, email, name, birthday, weight, height) AS ("
+                + "VALUES (?, ?, ?, ?, ? ,?)"
+                + "),"
+                + "upsert AS ("
+                + "UPDATE person_info pi "
+                + "SET user_id = nv.user_id,"
+                + "email = nv.email,"
+                + "name = nv.name,"
+                + "birthday = nv.birthday,"
+                + "weight = nv.weight,"
+                + "height = nv.height "
+                + "FROM new_values nv "
+                + "WHERE pi.user_id = nv.user_id "
+                + "RETURNING pi.*"
+                + ")"
+                + "INSERT INTO person_info (user_id, email, name, birthday, weight, height) "
+                + "SELECT user_id, email, name, birthday, weight, height "
+                + "FROM new_values "
+                + "WHERE NOT EXISTS "
+                + "(SELECT 1 "
+                + "FROM upsert up "
+                + "WHERE up.user_id = new_values.user_id)";
+
+        long id = 0;
+        System.out.println(SQL);
+
+        return id;
+    }
 
 }
 
