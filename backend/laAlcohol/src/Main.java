@@ -1,4 +1,6 @@
- public class Main {
+import javax.security.auth.login.LoginException;
+
+public class Main {
     public static void main(String[] args) {
 
         App app = new App();
@@ -16,11 +18,16 @@
         //createAccount(new Account)
 
         //test login
-        Login login = new Login();
+        Account login = new Account();
         login.setUsername("jonathan");
         login.setPassword("laalcohol");
-        long user_id = app.login(login);
-        System.out.println(user_id);
+        try {
+            long user_id = app.login(login);
+            System.out.println(user_id);
+        } catch (LoginException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
 

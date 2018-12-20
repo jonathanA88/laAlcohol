@@ -1,3 +1,4 @@
+import javax.security.auth.login.LoginException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,17 +28,33 @@ public class App {
         return conn;
     }
 
-    public long login(Login login){
+    public long login(Account account) throws LoginException{
         long user_id = 0;
+        String SQL = "SELECT user_id "
+                + "FROM account "
+                + "WHERE username = ? AND"
+                + "password = ?";
 
-        // ta bort lggin classen och återandvänd account tabellen
-        // check if username/email and password exist in account table,
-        // 1.a if it does, get the user_id
-        // 2. set the lastlogin column in account table
-        // 3. return the user_id
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(SQL)){
+            pstmt.setString(1, account.getUsername());
+            pstmt.setString(2, account.getPassword());
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    user_id = rs.getLong(1);
+                } else {
+                    // Va där best practice här? Hur returnar jag long när det går bra och
+                    // invalid login om det går dåligt?
+                    throw new LoginException("Invalid username or password");
 
-        // 1.b If it does not exist,  throw login failed
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
 
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
         return user_id;
     }
 
@@ -52,9 +69,8 @@ public class App {
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
 
             pstmt.setLong(1, user_id);
-            pstmt.executeQuery();
 
-            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+            try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
 
                     account.setUser_id(rs.getLong(1));
