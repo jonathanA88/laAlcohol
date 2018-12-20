@@ -5,7 +5,7 @@ public class Account {
     private long user_id;
     private String username;
     private String password;
-    private String email;
+    //private String email;
     private java.sql.Timestamp lastlogin;
 
     public Long getUser_id() {return user_id;}
@@ -16,7 +16,7 @@ public class Account {
         return username;
     }
 
-    public String getEmail() { return email;}
+    //public String getEmail() { return email;}
 
     public String getPassword() {
         return password;
@@ -26,9 +26,9 @@ public class Account {
         return lastlogin;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+   // public void setEmail(String email) {
+   //     this.email = email;
+   // }
 
     public void setPassword(String password) {
         this.password = password;

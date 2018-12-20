@@ -14,7 +14,7 @@ public class Main {
         /*
         Account account = new Account();
         account.setUsername("jonathan");
-        account.setEmail("jona.anders@gmail.com");
+        //account.setEmail("jona.anders@gmail.com");
         account.setPassword("laalcohol");
         account.setLastlogin(getCurrentTimeStamp());
 
@@ -66,6 +66,7 @@ public class Main {
         //id ska vara det id vi får från test 1
         personinfo.setUser_id(1);
         personinfo.setName("Jonathan Andersson");
+        personinfo.setEmail("jona.anders@gmail.com");
         personinfo.setBirthday(sqlDate);
         personinfo.setWeight((float) 82.5);
         personinfo.setHeight((float) 183);

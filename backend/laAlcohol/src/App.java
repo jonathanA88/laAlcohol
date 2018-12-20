@@ -59,7 +59,7 @@ public class App {
     }
 
     public Account getAccount(long user_id) {
-        String SQL = "SELECT user_id,username, password, email "
+        String SQL = "SELECT user_id, username, password "
                 + "FROM account "
                 + "WHERE user_id = ?";
 
@@ -76,7 +76,6 @@ public class App {
                     account.setUser_id(rs.getLong(1));
                     account.setUsername(rs.getString(2));
                     account.setPassword(rs.getString(3));
-                    account.setEmail(rs.getString(4));
                     account.setLastlogin(rs.getTimestamp(5));
                 }
             } catch (SQLException ex) {
@@ -94,8 +93,8 @@ public class App {
         create an account
      */
     public long createAccount(Account account){
-        String SQL = "INSERT INTO account(username, password, email, last_login) "
-                + "VALUES(?,?,?,?)";
+        String SQL = "INSERT INTO account(username, password, last_login) "
+                + "VALUES(?,?,?)";
 
         long id = 0;
 
@@ -104,7 +103,6 @@ public class App {
 
             pstmt.setString(1, account.getUsername());
             pstmt.setString(2, account.getPassword());
-            pstmt.setString(3, account.getEmail());
             pstmt.setTimestamp(4, account.getLastlogin());
 
             int affectedRows = pstmt.executeUpdate();

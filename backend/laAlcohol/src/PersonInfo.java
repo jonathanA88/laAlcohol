@@ -1,7 +1,7 @@
 public class PersonInfo {
 
     private long user_id;
-    //private String email;
+    private String email;
     private String name;
     private java.sql.Date birthday;
     private float weight;
@@ -9,9 +9,9 @@ public class PersonInfo {
 
     public long getUser_id(){ return this.user_id;}
 
-    //public String getEmail() {
-    //    return this.email;
-    //}
+    public String getEmail() {
+        return this.email;
+    }
 
     public String getName() {
         return this.name;
@@ -31,9 +31,9 @@ public class PersonInfo {
 
     public void setUser_id(long user_id){this.user_id = user_id;}
 
-    //public void setEmail(String email) {
-    //    this.email = email;
-    //}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public void setName(String name) {
         this.name = name;
