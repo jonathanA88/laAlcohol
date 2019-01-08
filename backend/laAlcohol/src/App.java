@@ -150,7 +150,31 @@ public class App {
                 + "WHERE up.user_id = new_values.user_id)";
 
         long id = 0;
-        System.out.println(SQL);
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setLong(1, personinfo.getUser_id());
+            pstmt.setString(2, personinfo.getEmail());
+            pstmt.setString(3, personinfo.getName());
+            pstmt.setDate(4, personinfo.getBirthday());
+            pstmt.setFloat(5, personinfo.getWeight());
+            pstmt.setFloat(6, personinfo.getHeight());
+
+            int affectedRows = pstmt.executeUpdate();
+            //check the affected rows
+            if(affectedRows > 0) {
+                //get the id back
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        id = rs.getLong(1);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
 
         return id;
     }
